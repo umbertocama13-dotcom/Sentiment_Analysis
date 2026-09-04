@@ -38,9 +38,8 @@ pipeline {
                 script {
                     try {
                         sh "docker run -d --name ${CONTAINER_NAME} -p ${PORT}:8000 ${IMAGE_NAME}:latest"
- 
-                        sh "sleep 10"
-                        sh "curl --fail http://localhost:${PORT}/docs"
+
+                        sh "curl --fail --retry 30 --retry-delay 10 --retry-connrefused http://localhost:${PORT}/docs"
                         sh "curl --fail http://localhost:${PORT}/metrics"
                         sh """
                             curl --fail -X POST http://localhost:${PORT}/predict \
@@ -48,6 +47,7 @@ pipeline {
                             -d '{"review": "This product is amazing and works perfectly"}'
                         """
                     } finally {
+                        sh "docker logs ${CONTAINER_NAME} || true"
                         sh "docker stop ${CONTAINER_NAME} || true"
                     }
                 }
