@@ -40,10 +40,10 @@ pipeline {
                         sh "docker rm -f ${CONTAINER_NAME} || true"
                         sh "docker run -d --name ${CONTAINER_NAME} -p ${PORT}:8000 ${IMAGE_NAME}:latest"
 
-                        sh "curl --fail --retry 90 --retry-delay 10 --retry-connrefused http://localhost:${PORT}/docs"
-                        sh "curl --fail http://localhost:${PORT}/metrics"
+                        sh "curl --fail --retry 90 --retry-delay 10 --retry-connrefused http://host.docker.internal:${PORT}/docs"
+                        sh "curl --fail http://host.docker.internal:${PORT}/metrics"
                         sh """
-                            curl --fail -X POST http://localhost:${PORT}/predict \
+                            curl --fail -X POST http://host.docker.internal:${PORT}/predict \
                             -H "Content-Type: application/json" \
                             -d '{"review": "This product is amazing and works perfectly"}'
                         """
