@@ -1,0 +1,38 @@
+groups:
+  - name: sentiment_analysis_alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: cpu_usage_percent > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU usage troppo alta"
+          description: "L'utilizzo della CPU è sopra l'80% da più di 5 minuti."
+
+      - alert: HighMemoryUsage
+        expr: memory_usage_percent > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Memory usage troppo alta"
+          description: "L'utilizzo della memoria è sopra l'80% da più di 5 minuti."
+
+      - alert: HighPredictionErrors
+        expr: increase(prediction_errors_total[5m]) > 5
+        for: 0m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Troppe prediction errors"
+          description: "Sono stati registrati più di 5 errori di predizione negli ultimi 5 minuti."
+
+      - alert: HighLatency
+        expr: histogram_quantile(0.95, rate(request_latency_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Latenza troppo alta"
+          description: "Il 95esimo percentile della latenza supera 0.5 secondi da più di 5 minuti."

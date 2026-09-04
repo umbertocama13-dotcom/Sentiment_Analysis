@@ -1,0 +1,37 @@
+# Environment
+.env
+venv/
+.venv/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Python cache / bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+
+# Test / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Logs
+Logs/
+logs/
+*.log
+app/Logs/
+app/logs/
+
+# IDE / editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
