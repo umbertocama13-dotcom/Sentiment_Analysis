@@ -45,7 +45,7 @@ pipeline {
                         sh """
                             curl --fail -X POST http://host.docker.internal:${PORT}/predict \
                             -H "Content-Type: application/json" \
-                            -d '{"review": "This product is amazing and works perfectly"}'
+                            -d '{"text": "This product is amazing and works perfectly"}'
                         """
                     } finally {
                         sh "docker logs ${CONTAINER_NAME} || true"
