@@ -37,6 +37,7 @@ pipeline {
             steps {
                 script {
                     try {
+                        sh "docker rm -f ${CONTAINER_NAME} || true"
                         sh "docker run -d --name ${CONTAINER_NAME} -p ${PORT}:8000 ${IMAGE_NAME}:latest"
 
                         sh "curl --fail --retry 30 --retry-delay 10 --retry-connrefused http://localhost:${PORT}/docs"
