@@ -20,6 +20,7 @@ pipeline {
                 sh '''
                     python3 -m venv venv
                     . venv/bin/activate
+                    export CXXFLAGS="-include cstdint"
                     pip install -r requirements.txt
                     pytest
                 '''
