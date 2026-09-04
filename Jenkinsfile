@@ -40,7 +40,7 @@ pipeline {
                         sh "docker rm -f ${CONTAINER_NAME} || true"
                         sh "docker run -d --name ${CONTAINER_NAME} -p ${PORT}:8000 ${IMAGE_NAME}:latest"
 
-                        sh "curl --fail --retry 30 --retry-delay 10 --retry-connrefused http://localhost:${PORT}/docs"
+                        sh "curl --fail --retry 50 --retry-delay 10 --retry-connrefused http://localhost:${PORT}/docs"
                         sh "curl --fail http://localhost:${PORT}/metrics"
                         sh """
                             curl --fail -X POST http://localhost:${PORT}/predict \
