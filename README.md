@@ -134,18 +134,3 @@ quindi inserire la password amministratore precedentemente recuperata
 - Da CMD spostarsi in una cartella diversa da quella provvisoria creata precedentemente ed eseguire:
                     `rmdir /s /q C:\jenkins-custom`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

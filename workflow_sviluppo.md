@@ -102,9 +102,3 @@ parametri uvicorn in Dockerfile/Jenkinsfile/terminale ogni volta.
 - `build-essential`: richiesto per compilare dipendenze native (coerente con il fix `CXXFLAGS` nel Jenkinsfile)
 - Installa il Docker CLI (solo il comando `docker`, non l'intero Docker Engine): il container Jenkins non ha bisogno di un proprio Docker Engine perché, tramite il socket montato (`-v //var/run/docker.sock:...`), comunica direttamente con l'Engine già in esecuzione sull'host. Serve quindi solo il client per inviare i comandi, non un secondo Engine duplicato dentro il container.
 
-
-
-
-
-
-
