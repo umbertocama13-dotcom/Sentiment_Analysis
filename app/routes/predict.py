@@ -16,10 +16,7 @@ router = APIRouter()
 
 @router.post("/predict")
 def route_predict_sentiment(request: SentimentRequest):
-    """
-    Analizza il sentiment di un testo.
-    Restituisce 400 se il testo non è in lingua inglese.
-    """
+    
     increment_in_progress()
     start_time = time.time()
     text = request.text

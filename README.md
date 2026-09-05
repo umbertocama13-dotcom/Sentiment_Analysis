@@ -1,5 +1,5 @@
 # Sentiment Analysis
-## Decsrizione progetto
+## Descrizione progetto
 Questo è un progetto pensato per eseguire una sentiment analysis su delle recensioni;
 I passaggi eseguiti sono i seguenti:
 
@@ -12,6 +12,15 @@ I passaggi eseguiti sono i seguenti:
 - Avviabile su container
 - Rende le metriche visibili in Grafana tramite Prometheus
 - Il progetto è inoltre disponibile su github al link https://github.com/umbertocama13-dotcom/Sentiment_Analysis
+
+Ulteriori informazioni sulle scelte implementative e su come è stato costruito il programma sono presenti nel file **workflow_sviluppo.md**
+
+
+**NOTA**: come modello di sentiment analysis è stato utilizzato il modello suggerito dalla consegna (indirizzo qui sotto)
+
+https://github.com/Profession-AI/progetti-devops/raw/refs/heads/main/Deploy%20e%20monitoraggio%20di%20un%20modello%20di%20sentiment%20analysis%20per%20recensioni/sentimentanalysismodel.pkl.
+
+Le performance non sono state qualitativamente positive, pertanto è possibile cambiare il modello sostituendo il vecchio nella cartella **app\model** e rinominandolo con il nome dle vecchio; in alternativa è possibile aggiungerlo nella cartella e cambiare la variabile **MODEL_PATH** nel file .env con **app/model/NOME_MODELLO.pkl**
 
 
 
@@ -81,7 +90,7 @@ Le due metriche semplicemente mostrano lo stato attuale dell’applicazione e se
 
 
 ## CI/CD con Jenkins
-La seguente procedura di utilizzo di jenkins è stata ideata in quanto la macchina su cui si è eseguito il progetto è datata e non permetteva l'utilizzo di docker in macchina virtuale, così si è utilizzato lo stratagemma di conteinerizzare jenkins con docker, eseguire tutto in una cartella dedicata, quindi rimuovere tutte le tracce dell'utilizzo di jenkins dal PC.
+La seguente procedura di utilizzo di jenkins è stata ideata in quanto la macchina su cui si è eseguito il progetto è datata e non permetteva l'utilizzo di docker in macchina virtuale, così si è utilizzato lo stratagemma di containerizzare jenkins con docker, eseguire tutto in una cartella dedicata, quindi rimuovere tutte le tracce dell'utilizzo di jenkins dal PC.
 
 - Aprire docker
 - Aprire cmd e creare una cartella dedicata per contenere jenkins
