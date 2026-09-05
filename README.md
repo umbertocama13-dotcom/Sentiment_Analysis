@@ -1,59 +1,54 @@
-```
-Sentiment_analisys/
-├── app/
-│   ├── __pycache__/
-│   ├── Logs/
-│   ├── model/
-│   │   ├── __init__.py
-│   │   └── sentiment_analysis_model.pkl
-│   ├── routes/
-│   │   ├── __pycache__/
-│   │   ├── __init__.py
-│   │   ├── metrics.py
-│   │   └── predict.py
-│   ├── schemas/
-│   │   ├── __pycache__/
-│   │   ├── __init__.py
-│   │   └── request.py
-│   ├── services/
-│   │   ├── __pycache__/
-│   │   ├── services_model/
-│   │   │   ├── __pycache__/
-│   │   │   ├── __init__.py
-│   │   │   └── model_fasttext.py
-│   │   ├── __init__.py
-│   │   ├── check_language.py
-│   │   ├── metrics_service.py
-│   │   └── sentiment_service.py
-│   ├── __init__.py
-│   ├── logging_config.py
-│   └── main.py
-├── docker/
-│   └── docker-compose.yml
-├── Logs/
-│   └── Sentiment_analysis.log
-├── monitoring/
-│   ├── alerts/
-│   │   └── alert_rules.yml
-│   ├── grafana/
-│   │   └── dashboard.json
-│   └── prometheus.yml
-├── tests/
-│   ├── __init__.py
-│   ├── test_api.py
-│   ├── test_integration.py
-│   └── test_model.py
-├── venv/
-├── .env
-├── .env.exemple
-├── .gitignore
-├── .dockerignore
-├── Dockerfile
-├── Jenkinsfile
-├── README.md
-├── requirements.txt
-└── run.py
-```
+# Sentiment Analysis
+
+Questo è un progetto pensato per eseguire una sentiment analysis su delle recensioni;
+I passaggi eseguiti sono i seguenti:
+
+- Carica un modello di Sentiment Analysis già pronto
+- Espone un’API REST per ricevere una recensione e restituire il sentiment previsto
+- Fornisce un endpoint per le metriche del servizio
+- Integra metriche di risposta, errori di predizione e uso di CPU e memoria
+- Viene deployata in modo automatico tramite Jenkins
+- Si eseguono test automatici prima del deploy
+- Avviabile su container
+- Rende le metriche visibili in Grafana tramite Prometheus
+- Il progetto è inoltre disponibile su github al link https://github.com/umbertocama13-dotcom/Sentiment_Analysis
+
+
+## Visualizzazione metriche con Prometheus - grafana
+Per visualizzare prometheus e grafana seguire il procedimento qui sotto:
+
+- Aprire docker desktop  (link per download windows https://docs.docker.com/desktop/setup/install/windows-install/ )
+- Aprire cmd e recarsi nella cartella del progetto (sostituire C:\percorso_progetto con il percorso corretto fino a Sentiment_analysis)
+                    `cd "C:\percorso_progetto"`
+- eseguire pip install requirements
+- entrare in venv con il comando 
+                    `venv\Scripts\activate`
+- entrare nella cartella docker 
+                    `cd docker`
+- Far partire il container docker con il comando 
+                    `docker compose up -d`
+- Quando si ottiene 
+
+    [+] up 4/4
+    ✔ Network docker_default  Created                                                                                  
+    ✔ Container prometheus    Started                                                                                  
+    ✔ Container grafana       Started                                                                                  
+    ✔ Container sentiment_app Started
+
+    è possibile avviare il browser e inserire in due pagine separate gli indirizzi  
+            `http://localhost:9090/`    e   `http://localhost:3000/`
+- Eseguire il login a grafana con credenziali nome utente: `admin` password `admin`
+- Su grafana andare nella sezione "dashboard" e selezionare la dashboard FastAPI Monitoring (è normale che venga segnato "No data" ovunque all'avviamento)
+
+
+
+
+
+
+
+
+
+
 
 `ricordarsi di scrivere nelle istruzioni che in prometheus.yml va cambiata localhost:8000 manualemnte se si cambia il file.env`
 
