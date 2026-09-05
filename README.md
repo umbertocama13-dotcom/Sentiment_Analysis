@@ -20,7 +20,9 @@ Ulteriori informazioni sulle scelte implementative e su come è stato costruito 
 
 https://github.com/Profession-AI/progetti-devops/raw/refs/heads/main/Deploy%20e%20monitoraggio%20di%20un%20modello%20di%20sentiment%20analysis%20per%20recensioni/sentimentanalysismodel.pkl.
 
-Le performance non sono state qualitativamente positive, pertanto è possibile cambiare il modello sostituendo il vecchio nella cartella **app\model** e rinominandolo con il nome dle vecchio; in alternativa è possibile aggiungerlo nella cartella e cambiare la variabile **MODEL_PATH** nel file .env con **app/model/NOME_MODELLO.pkl**
+Le performance del modello originale non erano qualitativamente positive, pertanto è stato addestrato un modello alternativo (TF-IDF + Logistic Regression su un sottoinsieme selezionato di recensioni Amazon, link seguente https://www.kaggle.com/datasets/kritanjalijain/amazon-reviews?select=test.csv ), che performa meglio ed è stato lasciato come opzione di default. Il vecchio modello resta comunque disponibile per essere riattivato.
+
+Per cambiare modello: sostituire il file nella cartella **app/model** mantenendo lo stesso nome, oppure aggiungere il nuovo file nella cartella e aggiornare la variabile **MODEL_PATH** nel file .env con **app/model/NOME_MODELLO.pkl**.
 
 
 

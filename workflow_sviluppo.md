@@ -102,3 +102,6 @@ parametri uvicorn in Dockerfile/Jenkinsfile/terminale ogni volta.
 - `build-essential`: richiesto per compilare dipendenze native (coerente con il fix `CXXFLAGS` nel Jenkinsfile)
 - Installa il Docker CLI (solo il comando `docker`, non l'intero Docker Engine): il container Jenkins non ha bisogno di un proprio Docker Engine perché, tramite il socket montato (`-v //var/run/docker.sock:...`), comunica direttamente con l'Engine già in esecuzione sull'host. Serve quindi solo il client per inviare i comandi, non un secondo Engine duplicato dentro il container.
 
+### Nota: tentativo con Hugging Face
+Prima di allenare un modello scikit-learn alternativo, si è tentato di estendere sentiment_service.py per supportare anche modelli Hugging Face (testati siebert/sentiment-roberta-large-english e distilbert-base-uncased-finetuned-sst-2-english), tramite una variabile MODEL_TYPE che sceglie tra le due interfacce. Il supporto funziona (interfaccia pkl e huggingface entrambe testate e coperte da test), ma rimane un limite: richiede dipendenze pesanti (torch/transformers), tempi di download/avvio più lunghi che avrebbero reso la fase di jenkins interminabile.
+Si è quindi deciso di lasciare solo la possibilità di cambiare il modello tramite un file pkl.
